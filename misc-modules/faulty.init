@@ -5,16 +5,19 @@ MODULE_NAME=faulty
 case "$1" in
   start)
      echo -n "Loading $MODULE_NAME"
+     cd /lib/modules/$(uname -r)/kernel/drivers/misc/
      /usr/bin/module_load $MODULE_NAME
      echo "."
      ;;
   stop)
      echo -n "Unloading $MODULE_NAME"
+     cd /lib/modules/$(uname -r)/kernel/drivers/misc/
      /usr/bin/module_unload $MODULE_NAME
      echo "."
      ;;
   force-reload|restart)
      echo -n "Reloading $MODULE_NAME"
+     cd /lib/modules/$(uname -r)/kernel/drivers/misc/
      /usr/bin/module_unload $MODULE_NAME
      /usr/bin/module_load $MODULE_NAME
      echo "."
